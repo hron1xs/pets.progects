@@ -2,8 +2,6 @@ import play #імпорт бібліотеки
 
 play.set_backdrop("white")#встановлення кольору фона
 
-
-
 @play.when_program_starts #декоратор
 #Декоратор - це функція, яка дозволяє обернути іншу функцію для розширення її функціональності без безпосередньої зміни коду
 
@@ -11,10 +9,9 @@ def start():#функція для старту програми
 
     global player,speach,text2
     text1 = play.new_text(words='п - підключитися,х-ховати,у-убивати',x=0,y=250,font_size=40,font = "Arial")#команда для створення тексту
-    text2 = play.new_text(words='ї - їсти ,с-спати,о-здивуватися',x=0,y=225,font_size=40,font = "Arial")#команда для створення тексту
+    text2 = play.new_text(words='ї - їсти ,с-спати,з-здивуватися',x=0,y=225,font_size=40,font = "Arial")#команда для створення тексту
     player = play.new_image(image='norm_face.png',x=0,y=0,size=150)#командва для додавання зображення
-    speach = play.new_text(words='Привіт, підлючися до інтернету((',x= 0,y = -250 )
-
+    speach = play.new_text(words='Привіт, підлючися до інтернету((',x= 0,y = -250 ) 
 
 @play.repeat_forever #декоратор2
 
@@ -31,6 +28,7 @@ async def do():#ігровий цикл
         speach.words = 'Ммм,зараз спробуєм'
         await play.timer(5)
         player.image = 'angry_face.png'
+        speach.size = 75
         speach.words = 'Це не їстівне,що ти мені підсунув?Хочу тепер убивати'
     elif play.key_is_pressed('у') or play.key_is_pressed('У'):
         player.image = 'chacok mortis.jpg'
@@ -44,17 +42,13 @@ async def do():#ігровий цикл
         await play.timer(5)
         player.image = 'armyan face.jpg'
         speach.words = 'Давай підемо спати '
+        speach.words = 'Але спочатку здивуй мене'
+    elif play.key_is_pressed('з') or play.key_is_pressed('З'):
+        player.image = 'chohesh.jpg'
+        await play.timer(5)
+        player.image = 'chacok mortis.jpg'
+        speach.words = 'ого,тепер точно потрібно йти спати'
     elif play.key_is_pressed('с') or play.key_is_pressed('С'):
         player.image = 'im fine.jpg'
-        
-
-
-
-
-
-        
-
-
-
-
+        speach.words = ' '
 play.start_program()#запуск програми
